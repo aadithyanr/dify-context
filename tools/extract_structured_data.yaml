@@ -1,0 +1,80 @@
+identity:
+  name: extract_structured_data
+  author: aadithyanr
+  label:
+    en_US: Extract Structured Data
+description:
+  human:
+    en_US: Extract structured data from public webpages using a JSON Schema.
+  llm: Extract fields from one or more public webpages into a caller-provided JSON Schema. This consumes credits per analyzed page.
+parameters:
+  - name: url
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: URL
+    human_description:
+      en_US: The public HTTP or HTTPS page or website to analyze.
+    llm_description: The complete public HTTP or HTTPS URL to analyze.
+  - name: schema
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: JSON Schema
+    human_description:
+      en_US: A JSON Schema object describing the requested result.
+    llm_description: A valid JSON Schema object serialized as JSON. Define every requested field and its type.
+  - name: instructions
+    type: string
+    required: false
+    form: llm
+    label:
+      en_US: Instructions
+    human_description:
+      en_US: Optional extraction guidance.
+    llm_description: Additional concise guidance for interpreting the page and filling the schema.
+  - name: max_pages
+    type: number
+    required: false
+    form: form
+    default: 1
+    min: 1
+    max: 25
+    label:
+      en_US: Maximum Pages
+    human_description:
+      en_US: Maximum pages to analyze. Credits are consumed per page.
+  - name: max_depth
+    type: number
+    required: false
+    form: form
+    default: 0
+    min: 0
+    max: 5
+    label:
+      en_US: Maximum Depth
+    human_description:
+      en_US: Maximum link depth beyond the starting page.
+  - name: follow_subdomains
+    type: boolean
+    required: false
+    form: form
+    default: false
+    label:
+      en_US: Follow Subdomains
+    human_description:
+      en_US: Allow extraction from pages on subdomains.
+  - name: fact_check
+    type: boolean
+    required: false
+    form: form
+    default: false
+    label:
+      en_US: Fact Check
+    human_description:
+      en_US: Ask Context.dev to verify extracted values against page evidence.
+extra:
+  python:
+    source: tools/extract_structured_data.py

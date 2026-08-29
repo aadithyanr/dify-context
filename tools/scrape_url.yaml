@@ -1,0 +1,84 @@
+identity:
+  name: scrape_url
+  author: aadithyanr
+  label:
+    en_US: Scrape URL
+description:
+  human:
+    en_US: Convert a live webpage into clean Markdown and metadata.
+  llm: Fetch a specific public URL and return clean Markdown plus page metadata. Use this when the target URL is already known.
+parameters:
+  - name: url
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: URL
+    human_description:
+      en_US: The public HTTP or HTTPS page to scrape.
+    llm_description: The complete public HTTP or HTTPS URL to fetch.
+  - name: use_main_content_only
+    type: boolean
+    required: false
+    form: form
+    default: true
+    label:
+      en_US: Main Content Only
+    human_description:
+      en_US: Remove navigation, footers, and other peripheral content.
+  - name: include_links
+    type: boolean
+    required: false
+    form: form
+    default: true
+    label:
+      en_US: Include Links
+    human_description:
+      en_US: Preserve links in the returned Markdown.
+  - name: include_images
+    type: boolean
+    required: false
+    form: form
+    default: false
+    label:
+      en_US: Include Images
+    human_description:
+      en_US: Preserve image references in the returned Markdown.
+  - name: include_html
+    type: boolean
+    required: false
+    form: form
+    default: false
+    label:
+      en_US: Include HTML
+    human_description:
+      en_US: Include the rendered HTML in the JSON result.
+  - name: include_selectors
+    type: string
+    required: false
+    form: form
+    label:
+      en_US: Include Selectors
+    human_description:
+      en_US: Comma-separated CSS selectors to include.
+  - name: exclude_selectors
+    type: string
+    required: false
+    form: form
+    label:
+      en_US: Exclude Selectors
+    human_description:
+      en_US: Comma-separated CSS selectors to exclude.
+  - name: wait_for_ms
+    type: number
+    required: false
+    form: form
+    min: 0
+    max: 30000
+    label:
+      en_US: Wait Before Capture
+    human_description:
+      en_US: Milliseconds to wait for dynamic page content.
+extra:
+  python:
+    source: tools/scrape_url.py

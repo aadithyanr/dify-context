@@ -1,0 +1,32 @@
+identity:
+  author: aadithyanr
+  name: context-dev
+  label:
+    en_US: Context.dev
+  description:
+    en_US: Live web search, scraping, crawling, structured extraction, and brand intelligence.
+  icon: icon.png
+  tags:
+    - search
+    - utilities
+credentials_for_provider:
+  api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: Context API Key
+    placeholder:
+      en_US: ctxt_secret_...
+    help:
+      en_US: Create an API key in the Context.dev dashboard.
+    url: https://app.context.dev/api-keys
+tools:
+  - tools/search_web.yaml
+  - tools/scrape_url.yaml
+  - tools/crawl_website.yaml
+  - tools/find_website_pages.yaml
+  - tools/extract_structured_data.yaml
+  - tools/get_brand_profile.yaml
+extra:
+  python:
+    source: provider/context-dev.py

@@ -1,0 +1,96 @@
+identity:
+  name: search_web
+  author: aadithyanr
+  label:
+    en_US: Search Web
+description:
+  human:
+    en_US: Search the live web and optionally include page Markdown.
+  llm: Search the live web for current information. Returns titles, URLs, descriptions, relevance scores, and optional page Markdown.
+parameters:
+  - name: query
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Query
+    human_description:
+      en_US: The web search query.
+    llm_description: The precise query to search for on the live web.
+  - name: num_results
+    type: number
+    required: false
+    form: form
+    default: 10
+    min: 10
+    max: 100
+    label:
+      en_US: Number of Results
+    human_description:
+      en_US: The maximum number of results to return.
+  - name: include_domains
+    type: string
+    required: false
+    form: form
+    label:
+      en_US: Include Domains
+    human_description:
+      en_US: Comma-separated domains to restrict the search to.
+  - name: exclude_domains
+    type: string
+    required: false
+    form: form
+    label:
+      en_US: Exclude Domains
+    human_description:
+      en_US: Comma-separated domains to omit from the search.
+  - name: freshness
+    type: select
+    required: false
+    form: form
+    label:
+      en_US: Freshness
+    human_description:
+      en_US: Restrict results to a recent time window.
+    options:
+      - value: last_24_hours
+        label:
+          en_US: Last 24 hours
+      - value: last_week
+        label:
+          en_US: Last week
+      - value: last_month
+        label:
+          en_US: Last month
+      - value: last_year
+        label:
+          en_US: Last year
+  - name: country
+    type: string
+    required: false
+    form: form
+    label:
+      en_US: Country
+    human_description:
+      en_US: Two-letter country code for localized results.
+  - name: query_fanout
+    type: boolean
+    required: false
+    form: form
+    default: false
+    label:
+      en_US: Query Fanout
+    human_description:
+      en_US: Expand the query into related searches for broader coverage.
+  - name: include_markdown
+    type: boolean
+    required: false
+    form: form
+    default: true
+    label:
+      en_US: Include Markdown
+    human_description:
+      en_US: Include cleaned page Markdown with each result.
+extra:
+  python:
+    source: tools/search_web.py

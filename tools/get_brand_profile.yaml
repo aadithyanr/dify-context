@@ -1,0 +1,41 @@
+identity:
+  name: get_brand_profile
+  author: aadithyanr
+  label:
+    en_US: Get Brand Profile
+description:
+  human:
+    en_US: Retrieve logos, colors, fonts, descriptions, and social profiles for a domain.
+  llm: Retrieve a complete brand profile for a domain, including logos, colors, fonts, descriptions, and social profiles.
+parameters:
+  - name: domain
+    type: string
+    required: true
+    form: llm
+    label:
+      en_US: Domain
+    human_description:
+      en_US: The brand's website domain.
+    llm_description: The brand's website domain, such as linear.app.
+  - name: maximum_speed
+    type: boolean
+    required: false
+    form: form
+    default: false
+    label:
+      en_US: Maximum Speed
+    human_description:
+      en_US: Prefer the fastest available lookup path.
+  - name: max_age_ms
+    type: number
+    required: false
+    form: form
+    min: 0
+    max: 31536000000
+    label:
+      en_US: Maximum Cache Age
+    human_description:
+      en_US: Maximum accepted cache age in milliseconds.
+extra:
+  python:
+    source: tools/get_brand_profile.py
